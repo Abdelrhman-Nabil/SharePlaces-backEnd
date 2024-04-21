@@ -65,7 +65,7 @@ const signUp = async (req, res, next) => {
 
   let token;
    try{
-    token=jwt.sign({userId:createdUser.id, email:createdUser.email},'superBoka',{expiresIn:'2h'})
+    token=jwt.sign({userId:createdUser.id, email:createdUser.email},process.env.DB_USER,{expiresIn:'2h'})
    } catch (err) {
     const error = new HttpError(
       'Signing up failed, please try again later.',
@@ -113,7 +113,7 @@ const logIn = async (req, res, next) => {
   }
   let token;
   try{
-   token=jwt.sign({userId:existingUser.id, email:existingUser.email},'superBoka',{expiresIn:'2h'})
+   token=jwt.sign({userId:existingUser.id, email:existingUser.email},process.env.DB_USER,{expiresIn:'2h'})
   } catch (err) {
    const error = new HttpError(
      'Loging In failed, please try again later.',

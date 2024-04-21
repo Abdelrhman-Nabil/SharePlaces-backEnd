@@ -10,7 +10,7 @@ const CheckAuth=(req,res,next)=>{
     if(!token){
         throw new Error('Authentication failed!');
     }
-    const decodedToken = jwt.verify(token,'superBoka');
+    const decodedToken = jwt.verify(token,process.env.DB_USER);
     req.userData={userId:decodedToken.userId}
     next();
   }catch (err) {
